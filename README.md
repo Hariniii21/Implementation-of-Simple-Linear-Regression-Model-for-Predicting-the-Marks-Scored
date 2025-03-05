@@ -8,8 +8,6 @@ To write a program to predict the marks scored by a student using the simple lin
 2. Anaconda – Python 3.7 Installation / Jupyter notebook
 
 ## Algorithm
-
-
 1.Import the standard Libraries.
 
 2.Set variables for assigning dataset values.
@@ -20,109 +18,103 @@ To write a program to predict the marks scored by a student using the simple lin
 
 5.Predict the regression for marks by using the representation of the graph.
 
-6.Compare the graphs and hence we obtained the linear regression for the given datas.
+6.Compare the graphs and hence we obtained the linear regression for the given datas. 
 
 
-## Program:
-```
-/*
+## Program and Output:
+
 Program to implement the simple linear regression model for predicting the marks scored.
-Developed by: Harini S
-RegisterNumber:  212223240048
-*/
 
+Developed by: Harini S
+
+Register Number: 212223240048
+
+```
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-from sklearn.metrics import mean_absolute_error, mean_squared_error
-df=pd.read_csv('student_scores.csv')
+from sklearn.metrics import mean_absolute_error,mean_squared_error
+df=pd.read_csv("C:\\Users\\admin\\OneDrive\\Desktop\\ML\\DATASET-20250226\\student_scores.csv")
 df.head()
+```
+![image](https://github.com/user-attachments/assets/bde309e4-94cd-4622-a7c7-c086b63f6020)
 
-df.tail()
-
-X=df.iloc[:,:-1].values
-X
-
-Y=df.iloc[:,1].values
-Y
-
-from sklearn.model_selection import train_test_split
-X_train,X_test,Y_train,Y_test=train_test_split(X,Y,test_size=1/3,random_state=0)
-
-from sklearn.linear_model import LinearRegression
-regressor=LinearRegression()
-regressor.fit(X_train,Y_train)
-Y_pred=regressor.predict(X_test)
-
-Y_pred
-
-Y_test
-
-mse=mean_squared_error(Y_test,Y_pred)
-print('MSE = ',mse)
-mae=mean_absolute_error(Y_test,Y_pred)
-print('MAE = ',mae)
-rmse=np.sqrt(mse)
-print("RMSE = ",rmse)
-
-plt.scatter(X_train,Y_train,color="orange")
-plt.plot(X_train,regressor.predict(X_train),color="red")
-plt.title("Hours vs Scores(Training Set)")
-plt.xlabel("Hours")
-plt.ylabel("Scores")
-plt.show()
-
-plt.scatter(X_test,Y_test,color="orange")
-plt.plot(X_test,Y_pred,color="blue")
-plt.title("Hours vs Scores(Test Set)")
-plt.xlabel("Hours")
-plt.ylabel("Scores")
-plt.show()
 
 ```
-
-## Output:
-
- # head
-
-![image](https://github.com/user-attachments/assets/74234293-9b89-4cbc-b95b-d2020a18325b)
+df.tail()
+```
+![image](https://github.com/user-attachments/assets/73a6fcf1-a680-4253-a1d2-67056da52e45)
 
 
-# tail
-
-![image](https://github.com/user-attachments/assets/a6e9ca2d-f757-460e-9cfe-5c6da95e1e42)
-
-
-# Segregating data to variables
-
-![image](https://github.com/user-attachments/assets/a4296513-db53-4143-a3a1-fcc3a79281d1)
-
-![image](https://github.com/user-attachments/assets/4c690609-8497-4d05-a66a-99431ff2d9ac)
+```
+x=df.iloc[:,:-1].values
+x
+```
+![image](https://github.com/user-attachments/assets/34138173-8cb5-4080-8f34-777d0ab584e8)
 
 
-# Displaying predicted values
-
-![image](https://github.com/user-attachments/assets/0d23324e-3aea-4277-a1fc-c4b75c8f7743)
-
-
-# Displaying actual values
-
-![image](https://github.com/user-attachments/assets/20254e94-a282-4cd5-92bf-259fca3dea5a)
+```
+y=df.iloc[:,1].values
+y
+```
+![image](https://github.com/user-attachments/assets/fb590fae-d0c0-4460-9b63-26aa32a117c3)
 
 
-# MSE MAE RMSE
+```
+from sklearn.model_selection import train_test_split
+x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=1/3,random_state=0)
 
-![image](https://github.com/user-attachments/assets/6f039261-42e3-4fb4-884a-7fa050fbefb1)
+from sklearn.linear_model import LinearRegression
+reg=LinearRegression()
+reg.fit(x_train,y_train)
+y_pred=reg.predict(x_test)
+
+y_pred
+```
+![image](https://github.com/user-attachments/assets/261601d7-5f68-437b-b2db-044b76d72be0)
 
 
-# Graph plot for training data
+```
+y_test
+```
+![image](https://github.com/user-attachments/assets/765bcb23-3d72-4862-82e6-c68cf1ad784d)
 
-![image](https://github.com/user-attachments/assets/bd511156-814a-42ec-84d6-161be2fdbdeb)
+
+```
+plt.scatter(x_train, y_train, color="orange")
+plt.plot(x_train, reg.predict(x_train), color="blue")
+plt.title("Hours vs Scores (Training Set)")
+plt.xlabel("Hours")
+plt.ylabel("Scores")
+plt.show()
+```
+![image](https://github.com/user-attachments/assets/6e8a44d4-cf3a-49fc-a99b-032ff502885c)
 
 
-# Graph plot for test data
+```
+plt.scatter(x_test, y_test, color="purple")
+plt.plot(x_test, reg.predict(x_test), color="green")
+plt.title("Hours vs Scores (Test Set)")
+plt.xlabel("Hours")
+plt.ylabel("Scores")
+plt.show()
+```
+![image](https://github.com/user-attachments/assets/33c3e445-5836-4999-adce-9704890bc78a)
 
-![image](https://github.com/user-attachments/assets/776a6af2-aa09-4f71-9b57-e866b00381c3)
+
+```
+mse = mean_squared_error(y_test, y_pred)
+print('MSE = ', mse)
+
+mae = mean_absolute_error(y_test, y_pred)
+print('MAE = ', mae)
+
+rmse = np.sqrt(mse)
+print("RMSE = ", rmse)
+
+```
+![image](https://github.com/user-attachments/assets/45128e9e-9029-4453-9b8b-8faffeadd5a9)
+
 
 
 ## Result:
