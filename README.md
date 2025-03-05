@@ -8,29 +8,33 @@ To write a program to predict the marks scored by a student using the simple lin
 2. Anaconda – Python 3.7 Installation / Jupyter notebook
 
 ## Algorithm
-```
-Step 1 : Start
-Step 2 : Import the standard Libraries.
-Step 3 : Set variables for assigning dataset values.
-Step 4 : Import linear regression from sklearn.
-Step 5 : Assign the points for representing in the graph.
-Step 6 : Predict the regression for marks by using the representation of the graph.
-Step 7 : Compare the graphs and hence we obtained the linear regression for the given datas. 
-Step 8 : Stop
-```
+
+
+1.Import the standard Libraries.
+
+2.Set variables for assigning dataset values.
+
+3.Import linear regression from sklearn.
+
+4.Assign the points for representing in the graph.
+
+5.Predict the regression for marks by using the representation of the graph.
+
+6.Compare the graphs and hence we obtained the linear regression for the given datas.
+
+
 ## Program:
 ```
 /*
 Program to implement the simple linear regression model for predicting the marks scored.
-Developed by: 
-RegisterNumber:  
+Developed by: Harini S
+RegisterNumber:  212223240048
 */
-```
-```
+
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-from sklearn.metrics import mean_absolute_error,mean_squared_error
+from sklearn.metrics import mean_absolute_error, mean_squared_error
 df=pd.read_csv('student_scores.csv')
 df.head()
 
@@ -49,10 +53,17 @@ from sklearn.linear_model import LinearRegression
 regressor=LinearRegression()
 regressor.fit(X_train,Y_train)
 Y_pred=regressor.predict(X_test)
- 
+
 Y_pred
 
 Y_test
+
+mse=mean_squared_error(Y_test,Y_pred)
+print('MSE = ',mse)
+mae=mean_absolute_error(Y_test,Y_pred)
+print('MAE = ',mae)
+rmse=np.sqrt(mse)
+print("RMSE = ",rmse)
 
 plt.scatter(X_train,Y_train,color="orange")
 plt.plot(X_train,regressor.predict(X_train),color="red")
@@ -61,27 +72,57 @@ plt.xlabel("Hours")
 plt.ylabel("Scores")
 plt.show()
 
-plt.scatter(X_test,Y_test,color="purple")
-plt.plot(X_test,regressor.predict(X_test),color="blue")
-plt.title("Hours vs Scores(Training Set)")
+plt.scatter(X_test,Y_test,color="orange")
+plt.plot(X_test,Y_pred,color="blue")
+plt.title("Hours vs Scores(Test Set)")
 plt.xlabel("Hours")
 plt.ylabel("Scores")
 plt.show()
 
-mse=mean_squared_error(Y_test,Y_pred)
-print('MSE = ',mse)
-mae=mean_absolute_error(Y_test,Y_pred)
-print('MAE = ',mae)
-rmse=np.sqrt(mse)
-print("RMSE = ",rmse)
-
 ```
 
 ## Output:
-![Screenshot 2024-08-30 134945](https://github.com/user-attachments/assets/e90063f3-2e91-4afa-9a7f-85daf4d73acf)
-![Screenshot 2024-08-30 135008](https://github.com/user-attachments/assets/a9a75e2c-bca7-4520-9872-e89e27115f5a)
-![Screenshot 2024-08-30 135048](https://github.com/user-attachments/assets/c13cac10-1e02-4189-8bbf-b6773cb24a62)
-![Screenshot 2024-08-30 135109](https://github.com/user-attachments/assets/3b88fa53-6b36-477c-a8b9-90c002333860)
+
+ # head
+
+![image](https://github.com/user-attachments/assets/74234293-9b89-4cbc-b95b-d2020a18325b)
+
+
+# tail
+
+![image](https://github.com/user-attachments/assets/a6e9ca2d-f757-460e-9cfe-5c6da95e1e42)
+
+
+# Segregating data to variables
+
+![image](https://github.com/user-attachments/assets/a4296513-db53-4143-a3a1-fcc3a79281d1)
+
+![image](https://github.com/user-attachments/assets/4c690609-8497-4d05-a66a-99431ff2d9ac)
+
+
+# Displaying predicted values
+
+![image](https://github.com/user-attachments/assets/0d23324e-3aea-4277-a1fc-c4b75c8f7743)
+
+
+# Displaying actual values
+
+![image](https://github.com/user-attachments/assets/20254e94-a282-4cd5-92bf-259fca3dea5a)
+
+
+# MSE MAE RMSE
+
+![image](https://github.com/user-attachments/assets/6f039261-42e3-4fb4-884a-7fa050fbefb1)
+
+
+# Graph plot for training data
+
+![image](https://github.com/user-attachments/assets/bd511156-814a-42ec-84d6-161be2fdbdeb)
+
+
+# Graph plot for test data
+
+![image](https://github.com/user-attachments/assets/776a6af2-aa09-4f71-9b57-e866b00381c3)
 
 
 ## Result:
