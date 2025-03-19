@@ -18,103 +18,125 @@ To write a program to predict the marks scored by a student using the simple lin
 
 5.Predict the regression for marks by using the representation of the graph.
 
-6.Compare the graphs and hence we obtained the linear regression for the given datas. 
+6.Compare the graphs and hence we obtained the linear regression for the given datas.
 
 
-## Program and Output:
-
+## Program:
+```
 Program to implement the simple linear regression model for predicting the marks scored.
-
-Developed by: Harini S
-
-Register Number: 212223240048
+Developed by:Harini S
+RegisterNumber:212223240048
 
 ```
-import pandas as pd
+
+```
 import numpy as np
-import matplotlib.pyplot as plt
+import pandas as pd
 from sklearn.metrics import mean_absolute_error,mean_squared_error
-df=pd.read_csv("C:\\Users\\admin\\OneDrive\\Desktop\\ML\\DATASET-20250226\\student_scores.csv")
-df.head()
+import matplotlib.pyplot as plt
+dataset = pd.read_csv("C:/Users/Keert/Downloads/Ml exp/student_scores.csv")
+print(dataset.head())
+print(dataset.tail())
 ```
-![image](https://github.com/user-attachments/assets/bde309e4-94cd-4622-a7c7-c086b63f6020)
 
-
-```
-df.tail()
-```
-![image](https://github.com/user-attachments/assets/73a6fcf1-a680-4253-a1d2-67056da52e45)
-
+<img width="161" alt="image" src="https://github.com/user-attachments/assets/d4152761-5462-490e-b1cf-493765d99eef" />
 
 ```
-x=df.iloc[:,:-1].values
-x
+dataset.info()
 ```
-![image](https://github.com/user-attachments/assets/34138173-8cb5-4080-8f34-777d0ab584e8)
 
+<img width="284" alt="image" src="https://github.com/user-attachments/assets/5c9cace7-95a8-4724-a857-5007a8557dd0" />
 
 ```
-y=df.iloc[:,1].values
-y
+x=dataset.iloc[:,:-1].values
+print(x)
+y=dataset.iloc[:,-1].values
+print(y)
 ```
-![image](https://github.com/user-attachments/assets/fb590fae-d0c0-4460-9b63-26aa32a117c3)
 
+<img width="461" alt="image" src="https://github.com/user-attachments/assets/87efb915-5e7f-4885-8370-fc74eb50264b" />
 
 ```
 from sklearn.model_selection import train_test_split
-x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=1/3,random_state=0)
+x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=0.2,random_state=0)
+x_train.shape
+```
 
+<img width="90" alt="image" src="https://github.com/user-attachments/assets/2b0f324f-ab92-4014-aa1f-d5e18c175d81" />
+
+```
+from sklearn.model_selection import train_test_split
+x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=0.2,random_state=0)
+x_train.shape
+x_test.shape
+```
+
+<img width="88" alt="image" src="https://github.com/user-attachments/assets/ff7f4310-2d78-479e-9cff-482279a157b9" />
+
+```
+from sklearn.model_selection import train_test_split
+x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=0.2,random_state=0)
+x_train.shape
+x_test.shape
 from sklearn.linear_model import LinearRegression
 reg=LinearRegression()
 reg.fit(x_train,y_train)
+```
+
+<img width="223" alt="image" src="https://github.com/user-attachments/assets/d9e68d2a-9cfa-47ad-8aa3-43d65179d3c1" />
+
+```
 y_pred=reg.predict(x_test)
-
-y_pred
+print(y_pred)
+print(y_test)
 ```
-![image](https://github.com/user-attachments/assets/261601d7-5f68-437b-b2db-044b76d72be0)
 
-
-```
-y_test
-```
-![image](https://github.com/user-attachments/assets/765bcb23-3d72-4862-82e6-c68cf1ad784d)
-
+<img width="607" alt="image" src="https://github.com/user-attachments/assets/091e8c7d-3665-494b-ad64-545c2ea967db" />
 
 ```
-plt.scatter(x_train, y_train, color="orange")
-plt.plot(x_train, reg.predict(x_train), color="blue")
-plt.title("Hours vs Scores (Training Set)")
+plt.scatter(x_train,y_train,color="green")
+plt.plot(x_train,reg.predict(x_train),color="red")
+plt.title('Traning set(H vs S)')
 plt.xlabel("Hours")
-plt.ylabel("Scores")
+plt.ylabel("scores")
+plt.show()
+plt.scatter(x_test,y_test,color="blue")
+plt.plot(x_test,reg.predict(x_test),color="silver")
+plt.title('Test set(H vs S)')
+plt.xlabel("Hours")
+plt.ylabel("scores")
 plt.show()
 ```
-![image](https://github.com/user-attachments/assets/6e8a44d4-cf3a-49fc-a99b-032ff502885c)
-
-
-```
-plt.scatter(x_test, y_test, color="purple")
-plt.plot(x_test, reg.predict(x_test), color="green")
-plt.title("Hours vs Scores (Test Set)")
-plt.xlabel("Hours")
-plt.ylabel("Scores")
-plt.show()
-```
-![image](https://github.com/user-attachments/assets/33c3e445-5836-4999-adce-9704890bc78a)
-
 
 ```
 mse = mean_squared_error(y_test, y_pred)
 print('MSE = ', mse)
+```
 
-mae = mean_absolute_error(y_test, y_pred)
-print('MAE = ', mae)
-
-rmse = np.sqrt(mse)
-print("RMSE = ", rmse)
+<img width="184" alt="image" src="https://github.com/user-attachments/assets/307295c1-0088-4bec-acde-869604aa5cde" />
 
 ```
-![image](https://github.com/user-attachments/assets/45128e9e-9029-4453-9b8b-8faffeadd5a9)
+mae=mean_absolute_error(y_test,y_pred)
+print('MAE = ',mae)
+```
 
+<img width="209" alt="image" src="https://github.com/user-attachments/assets/7cfba909-b2b6-4002-bb96-57806ba3605d" />
+
+```
+rmse=np.sqrt(mse)
+print("RMSE = ",rmse)
+```
+<img width="260" alt="image" src="https://github.com/user-attachments/assets/e6412fd9-e631-4ad2-a96a-af7f0b3eb7cf" />
+
+
+
+## Output:
+
+### Training Set:
+<img width="416" alt="image" src="https://github.com/user-attachments/assets/ac125bc4-6138-4ea3-a13d-189d5a9581ba" />
+
+### Testing Set:
+<img width="406" alt="image" src="https://github.com/user-attachments/assets/fcf2a1d9-b77f-4e8e-8d30-d75afc06cf1c" />
 
 
 ## Result:
